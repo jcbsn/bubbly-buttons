@@ -5,11 +5,11 @@ Here's a simple way to generate a more joyful box.
 <img src="images/buttons.png?raw=true" width="300px">
 
 ## Inspiration
-I was one day scrolling through the feed of dribbble and found these button. They weren't normal buttons. They had a border radius, that much was obvious, but they had something more. This left me wondering. How can I make these myself with CSS?
+I was one day scrolling through the feed of dribbble and found these button. They weren't normal buttons. They had a border radius, that much was obvious, but they had something more. This left me wondering. Can I make these myself using CSS?
 
-After doing some research I found that I couldn't make them with CSS. Atleast not according to my understanding. Please let me know if there's a different way.
+After doing some research I found that I couldn't make them with CSS. Atleast not according to my understanding. 
 
-Anyway, SVG Paths seemed like a promising workaround.
+Next up was SVG Paths, and they seemed to be a promising workaround. Please let me know if there is another way.
 
 ## Prototype
 I would like to give a huge thanks to [Anthony Dugois](https://codepen.io/anthonydugois/) for making the [SVG Path Builder](https://codepen.io/anthonydugois/pen/mewdyZ). 
@@ -23,17 +23,18 @@ But what if we want it to have a different size?
 
 > That's easy, just move the 24 points in the tool and copy/paste. 
 
-This becomes a bit annoying after a while. Not sustainable. So why not make a tool to easily resize the SVG?
-
+This becomes a bit annoying after a while. Not sustainable. I started thinking about making a tool to generate these for me, that would ease the process a bit. 
+But then I thought:
 > Nah, there has to be a better way.
 
 And there was.
 
 ## The script
-This all resultet in me writing a script you easily can import to your projects.
-You don't even need to write the SVG-tag. 
+It resultet in me writing a script you easily can import to your projects.
+You don't even need to write the SVG-tag. Just import the script and add like six lines of CSS.
 
-Simply add an element with the class:
+Simply add an element with the class `bubbly-b`. This can be on a button, a box or whatever you want. You'll see me call it `button` in the script, but that doesn't matter. It's just a variable.
+
 ```html
 <a href="#" class="bubbly-b">I'm Bubbly!</a>
 ```
@@ -48,7 +49,9 @@ Simply add an element with the class:
 </a>
 ```
 
-It automatically takes into account the size of the element. You don't even need to do anything more, unless you are experimental. It wasn't my intention, buy you can make some funky looking shapes with this.
+In this example I've used an anchor tag with some text. Since I didn't tell the link which size it should have the script makes sure it keeps its dimensions. If you want to override the automatic behaviour, have a look at the parameters below.
+
+It wasn't my intention, buy you can make some funky looking shapes with this.
 
 <img src="images/funky.png" width="100%">
 
@@ -63,15 +66,16 @@ These are:
    angle=""
    ></a>
 ```
-#### Width & Height
-Pretty straight forward
 
-#### Radius, Offset & Angle
-1. Radius is also pretty straight forward. Set a value and the radius of the four corners changes.
+1. Width, automatic if left out or empty. Can be overridden.
+
+2. Height, automatic if left out or empty. Can be overridden.
+
+3. Radius is pretty straight forward. There's a default of 1/6th of the minimum between width and height. Can be overridden.
 
 2. Offset is there to accomodate for SVG and the overflow cutting off. This is handled automatically, but I've added a way to override it.
 
-3. This one changes the cubic bezier part of the SVG Paths. I've made this to behave when all values are default. I cannot be held accountable for what happens when parameters are abused. 
+3. This one modifies the cubic-bezier part of the SVG Paths. When the other parameters are "normal" this one behaves. I cannot be held accountable for what happens when parameters are abused. 
 
 That's pretty much it. 
 
@@ -140,7 +144,7 @@ for(i = 0; i < buttons.length; i++) {
 
     // Setting up the cubic bezier thingies
     var C1 = 2*angle;
-    var C2 = 2;
+    var C2 = angle/2;
 
     // Let's make some bubbly paths
     path = "M " + (TLX-radius) + " " + TLY + " ";
