@@ -1,4 +1,4 @@
-# bubbly-buttons
+# Bubbly Buttons
 Bored of normal border-radius? 
 Here's a simple way to generate a more joyful box.
 
@@ -12,3 +12,5 @@ SVG path seemed like a promising workaround.
 I would like to give a huge thanks to [Anthony Dugois](https://codepen.io/anthonydugois/) for making the [SVG Path Builder](https://codepen.io/anthonydugois/pen/mewdyZ). 
 
 I reached the result I wanted with the path tool.
+
+[SVG Path Builder.png](images/SVG Path Builder.png)
