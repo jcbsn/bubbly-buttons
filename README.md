@@ -125,5 +125,7 @@ If you have any thoughts or suggestions, please let me know.
 Feel free to use this in your projects.
 If you decide to use it, please send me a link.
 
+You can find me at [@philip_jcbsn](https://twitter.com/philip_jcbsn) on Twitter.
+
 Take care!
 /Philip
