@@ -118,6 +118,12 @@ These are the essential styles needed to make this work.
 }
 ```
 
+Since box-shadow works poorly with these shapes, add this to the `.bubbly-b` style.
+
+```css
+filter: drop-shadow(rgba(0,0,0,.4) 0 5px 8px);
+```
+
 ## Conclusions
 It's been a fun day.
 If you have any thoughts or suggestions, please let me know.
