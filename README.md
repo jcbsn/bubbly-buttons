@@ -80,7 +80,7 @@ Go play around with them in the [demo](https://codepen.io/jcbsn/pen/wvKEXJb).
 
 All of these are automatically set if left out or empty.
 
-The the HTML they look like this:
+The HTML looks like this:
 ```html
 <a href="#" class="bubbly-b"
    width=""
