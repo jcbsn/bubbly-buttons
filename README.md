@@ -65,12 +65,22 @@ The script can be found [here](scripts/bubbly-b.js). There's also a [minimized](
 
 In this example I've used an anchor tag with some text. If you want to override the automatic behaviour, have a look at the parameters below.
 
-It wasn't my intention, buy you can make some funky looking shapes with this.
+There are a few parameters that can be adjusted:
+Go play around with them in the [demo](https://codepen.io/jcbsn/pen/wvKEXJb).
 
-<img src="images/funky.png" width="100%">
+1. Width, changes the width.
 
-To get these results, I've modified a few parameters.
-These are:
+2. Height, changes the height.
+
+3. Radius is pretty straight forward. There's a default of 1/6th of the lesser of width and height.
+
+4. Offset is there to accomodate for SVG and the overflow cutting off.
+
+5. Angle modifies the cubic-bezier part of the SVG Paths. When the other parameters are "normal" this one behaves. 
+
+All of these are automatically set if left out or empty.
+
+The the HTML they look like this:
 ```html
 <a href="#" class="bubbly-b"
    width=""
@@ -80,20 +90,12 @@ These are:
    angle=""
    ></a>
 ```
-
-Go play around with them in the [demo](https://codepen.io/jcbsn/pen/wvKEXJb).
-
-1. Width, automatic if left out or empty.
-
-2. Height, automatic if left out or empty.
-
-3. Radius is pretty straight forward. There's a default of 1/6th of the minimum between width and height.
-
-2. Offset is there to accomodate for SVG and the overflow cutting off.
-
-3. Angle modifies the cubic-bezier part of the SVG Paths. When the other parameters are "normal" this one behaves. 
+If you want defaults other than the ones set, it's easily changed in the script.
 
 I cannot be held accountable for what happens when parameters are abused. 
+It wasn't my intention, buy you can make some funky looking shapes with this.
+
+<img src="images/funky.png" width="100%">
 
 ## CSS
 
@@ -124,3 +126,4 @@ Feel free to use this in your projects.
 If you decide to use it, please send me a link.
 
 Take care!
+/Philip
