@@ -1,39 +1,47 @@
 # Bubbly Buttons
-Bored of normal border-radius? 
+Bored of normal border-radius?
+Want to give your buttons or boxes some flare?
 Here's a simple way to generate a more joyful box.
 
-<img src="images/buttons.png?raw=true" width="300px">
+<img src="images/buttons.png?raw=true" width="200px">
 
 ## Inspiration
-I was one day scrolling through the feed of dribbble and found these button. They weren't normal buttons. They had a border radius, that much was obvious, but they had something more. This left me wondering. Can I make these myself using CSS?
+I was one day scrolling through the feed of dribbble looking for inspiration. Suddenly, these funky looking buttons appeared. They weren't normal buttons. They had a border radius, but they had something more. This left me wondering, can I make these myself using CSS?
 
-After doing some research I found that I couldn't make them with CSS. Atleast not according to my understanding. 
+After doing some research I found that I couldn't make them with pure CSS. Atleast not according to my understanding. 
 
 Next up was SVG Paths, and they seemed to be a promising workaround. Please let me know if there is another way.
 
 ## Prototype
-I would like to give a huge thanks to [Anthony Dugois](https://codepen.io/anthonydugois/) for making the [SVG Path Builder](https://codepen.io/anthonydugois/pen/mewdyZ). 
+I would like to give a huge thanks to Anthony Dugois for making the [SVG Path Builder](https://codepen.io/anthonydugois/pen/mewdyZ). 
 
-I reached the result I wanted with the path tool.
+Using the tool I got something to start working with.
 
 <img src="images/SVG Path Builder.png?raw=true" width="300px">
 
 Just copying the code from the tool and pasting it in an SVG is easy. 
-But what if we want it to have a different size?
+But what if we want it to be a rectangle instead of a square? What if we aren't happy with the radius?
+Scaling it could work, but then they become distorted. Can't have that. Not sustainable. 
 
-> That's easy, just move the 24 points in the tool and copy/paste. 
+I started thinking about making a tool to generate these for me, that would ease the process a bit. 
+Some fancy sliders to adjust everything real-time and then I was back to copy/paste to get what I wanted.
 
-This becomes a bit annoying after a while. Not sustainable. I started thinking about making a tool to generate these for me, that would ease the process a bit. 
 But then I thought:
-> Nah, there has to be a better way.
+> There has to be a better way.
 
 And there was.
 
 ## The script
 It resultet in me writing a script you easily can import to your projects.
-You don't even need to write the SVG-tag. Just import the script and add like six lines of CSS.
+You don't even need to write the SVG-tag. Just import the script and add like five or six lines of CSS.
 
-Simply add an element with the class `bubbly-b`. This can be on a button, a box or whatever you want. You'll see me call it `button` in the script, but that doesn't matter. It's just a variable.
+1. Add the script, preferably at the bottom of the `body`.
+```html
+<script
+```
+
+2. Add an element with the class `bubbly-b`. This can be on a button, a box or whatever you want. You'll see me call it `button` in the script, but that doesn't matter. It's just a variable.
+3. (Optional) Add some styling to fit your own needs.
 
 ```html
 <a href="#" class="bubbly-b">I'm Bubbly!</a>
