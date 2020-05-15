@@ -7,44 +7,48 @@ Here's a simple way to generate a more joyful box.
 
 <img src="images/buttons.png?raw=true" width="200px">
 
+[demo @ codepen](https://codepen.io/jcbsn/pen/wvKEXJb)
+
 ## Inspiration
-I was one day scrolling through the feed of dribbble looking for inspiration. Suddenly, these funky looking buttons appeared. They weren't normal buttons. They had a border radius, but they had something more. This left me wondering, can I make these myself using CSS?
+I was one day scrolling through the feed of dribbble looking for inspiration. Suddenly, these funky looking buttons appeared. They weren't normal buttons. They had a border radius, and they had something more. This left me wondering if I can make them myself using CSS?
 
 After doing some research I found that I couldn't make them with pure CSS. Atleast not according to my understanding. 
 
-Next up was SVG Paths, and they seemed to be a promising workaround. Please let me know if there is another way.
+SVG Paths seemed to be a promising workaround. Please let me know if there is another way.
 
 ## Prototype
-I would like to give a huge thanks to Anthony Dugois for making the [SVG Path Builder](https://codepen.io/anthonydugois/pen/mewdyZ). 
+I would like to give a huge thanks to Anthony Dugois for making the [SVG Path Builder](https://codepen.io/anthonydugois/pen/mewdyZ).
+I find myself using the tool as a creative outlet from time to time.
 
-Using the tool I got something to start working with.
+Using the tool I got something to start working with. Time to get technical.
 
 <img src="images/SVG Path Builder.png?raw=true" width="300px">
 
-Just copying the code from the tool and pasting it in an SVG is easy. 
-But what if we want it to be a rectangle instead of a square? What if we aren't happy with the radius?
-Scaling it could work, but then they become distorted. Can't have that. Not sustainable. 
+Just copying the path from the tool and pasting it in an SVG is easy. 
+But what if we want it to be a rectangle instead of a square? What if we aren't happy with the radius? What if we want it more "bubbly"?
+Scaling it could work, but then distortion kicks in. Can't have that. Not sustainable. 
 
-I started thinking about making a tool to generate these for me, that would ease the process a bit. 
-Some fancy sliders to adjust everything real-time and then I was back to copy/paste to get what I wanted.
+I started thinking about making a tool to generate these for me. That would ease the process a bit. 
+Maybe some fancy sliders to adjust everything real-time. I then realised I still hadn't gotten away from copy/paste.
 
-But then I thought:
-> There has to be a better way.
-
-And there was.
+Things had to get automated.
 
 ## The script
-It resultet in me writing a script you easily can import to your projects.
-You don't even need to write the SVG-tag. Just import the script and add like five or six lines of CSS.
+It resulted in a script you easily can import to your projects.
+You don't even need to write SVG. 
 
 1. Add the script, preferably at the bottom of the `body`.
 ```html
-<script
+<script src="/javascript/bubbly-b.js" type="text/javascript"></script>
 ```
+The script can be found [here](scripts/bubbly-b.js). There's also a [minimized](scripts/min.bubbly-b.js) version (1.81 KB).
 
-2. Add an element with the class `bubbly-b`. This can be on a button, a box or whatever you want. You'll see me call it `button` in the script, but that doesn't matter. It's just a variable.
-3. (Optional) Add some styling to fit your own needs.
+2. Add an element with the class `bubbly-b`. This can be on an anchor tag, a div or whatever you want.
 
+3. Add some styling to fit your own needs.
+
+
+## HTML
 ```html
 <a href="#" class="bubbly-b">I'm Bubbly!</a>
 ```
@@ -59,7 +63,7 @@ You don't even need to write the SVG-tag. Just import the script and add like fi
 </a>
 ```
 
-In this example I've used an anchor tag with some text. Since I didn't tell the link which size it should have the script makes sure it keeps its dimensions. If you want to override the automatic behaviour, have a look at the parameters below.
+In this example I've used an anchor tag with some text. If you want to override the automatic behaviour, have a look at the parameters below.
 
 It wasn't my intention, buy you can make some funky looking shapes with this.
 
@@ -77,112 +81,29 @@ These are:
    ></a>
 ```
 
-1. Width, automatic if left out or empty. Can be overridden.
+Go play around with them in the [demo](https://codepen.io/jcbsn/pen/wvKEXJb).
 
-2. Height, automatic if left out or empty. Can be overridden.
+1. Width, automatic if left out or empty.
 
-3. Radius is pretty straight forward. There's a default of 1/6th of the minimum between width and height. Can be overridden.
+2. Height, automatic if left out or empty.
 
-2. Offset is there to accomodate for SVG and the overflow cutting off. This is handled automatically, but I've added a way to override it.
+3. Radius is pretty straight forward. There's a default of 1/6th of the minimum between width and height.
 
-3. This one modifies the cubic-bezier part of the SVG Paths. When the other parameters are "normal" this one behaves. I cannot be held accountable for what happens when parameters are abused. 
+2. Offset is there to accomodate for SVG and the overflow cutting off.
 
-That's pretty much it. 
+3. Angle modifies the cubic-bezier part of the SVG Paths. When the other parameters are "normal" this one behaves. 
 
-## Here's the code
+I cannot be held accountable for what happens when parameters are abused. 
 
-### Javascript
-
-```javascript
-buttons = document.getElementsByClassName("bubbly-b");
-
-// Loop through all the buttons on the page
-for(i = 0; i < buttons.length; i++) {
-    button = buttons[i];
-
-    // Let's get some data to work with
-    width = 1*button.getAttribute("width");
-    height = 1*button.getAttribute("height");
-    radius = 1*button.getAttribute("radius");
-    angle = 1*button.getAttribute("angle");
-    offset = 1*button.getAttribute("offset");
-
-    // Clean up the anchor-tag, gotta look good when inspecting
-    button.removeAttribute("width");
-    button.removeAttribute("height");
-    button.removeAttribute("radius");
-    button.removeAttribute("angle");
-    button.removeAttribute("offset");
-
-    // Didn't set any values? No problem. I got your back
-    if (width === 'auto' || !width) {
-        // If left alone, width will be automatic
-        width = button.offsetWidth;
-    }
-    if (height === 'auto' || !height) {
-        // If left alone, height will be automatic
-        height = button.offsetHeight;
-    }
-    if (radius === 'auto' || !radius) {
-        // This is a default value. I think it looks good
-        radius = Math.min(width, height)/6;
-    }
-    if (angle === 'auto' || !angle) {
-        // Settings this parameter to a third of the radius seems to look the best to me
-        angle = radius/3;
-    }
-    if (offset === 'auto' || !offset) {
-        // This value has to be higher than or equal to the angle to avoid hidden overflow
-        offset = angle;
-    }
-
-    // Top left corner
-    var TLX = offset+radius;
-    var TLY = offset+radius;
-
-    // Top right corner
-    var TRX = width-offset-radius;
-    var TRY = offset+radius
-
-    // Bottom right corner
-    var BRX = width-offset-radius;
-    var BRY = height-offset-radius;
-
-    // Bottom left corner
-    var BLX = offset+radius;
-    var BLY = height-offset-radius;
-
-    // Setting up the cubic bezier thingies
-    var C1 = 2*angle;
-    var C2 = angle/2;
-
-    // Let's make some bubbly paths
-    path = "M " + (TLX-radius) + " " + TLY + " ";
-    // Top left corner and top side
-    path += "C " + (TLX-radius+C2) + " " + (TLY-C1) + " " + (TLX-C1) + " " + (TLY-radius+C2) + " " + (TLX) + " " + (TLY-radius) + " ";
-    path += "C " + (TLX+C1) + " " + (TLY-radius-C2) + " " + (TRX-C1) + " " + (TRY-radius-C2) + " " + (TRX) + " " + (TRY-radius) + " ";
-    // Top right corner and right side
-    path += "C " + (TRX+C1) + " " + (TRY-radius+C2) + " " + (TRX+radius-C2) + " " + (TRY-C1) + " " + (TRX+radius) + " " + (TLY) + " ";
-    path += "C " + (TRX+radius+C2) + " " + (TRY+C1) + " " + (BRX+radius+C2) + " " + (BRY-C1) + " " + (TRX+radius) + " " + (BRY) + " ";
-    // 3. Bottom right corner and bottom side
-    path += "C " + (BRX+radius-C2) + " " + (BRY+C1) + " " + (BRX+C1) + " " + (BRY+radius-C2) + " " + (BRX) + " " + (BRY+radius) + " ";
-    path += "C " + (BRX-C1) + " " + (BRY+radius+C2) + " " + (BLX+C1) + " " + (BLY+radius+C2) + " " + (BLX) + " " + (BLY+radius) + " ";
-    // 4. Bottom left corner and left side
-    path += "C " + (BLX-C1) + " " + (BLY+radius-C2) + " " + (BLX-radius+C2) + " " + (BLY+C1) + " " + (BLX-radius) + " " + (BLY) + " ";
-    path += "C " + (BLX-radius-C2) + " " + (BLY-C1) + " " + (TLX-radius-C2) + " " + (TLY+C1) + " " + (TLX-radius) + " " + (TLY) + " ";
-
-    // Now, tell the DOM to do it's thing
-    button.innerHTML += '<svg width="' + width + '" height="' + height + '"><path d="' + path + '" /></svg>';
-    button.style.setProperty('width', width + "px");
-    button.style.setProperty('height', height + "px");
-}
-```
-
-### CSS
+## CSS
 
 These are the essential styles needed to make this work. 
 
 ```css
+* {
+	box-sizing: border-box;
+}
+
 .bubbly-b {
 	display: inline-block;
 	position: relative;
