@@ -1,22 +1,22 @@
 # Bubbly Buttons
 Bored of normal border-radius?
 
-Want to give your buttons or boxes some flare?
+Want to give your elements some curves?
 
 Here's a simple way to generate a more joyful box.
 
 <img src="images/buttons.png?raw=true" width="200px">
 
-[demo @ codepen](https://codepen.io/jcbsn/pen/wvKEXJb)
+Check out the [demo](https://codepen.io/jcbsn/pen/wvKEXJb) at codepen.
 
 ## Inspiration
-I was one day scrolling through the feed of dribbble looking for inspiration. Suddenly, these funky looking buttons appeared. They weren't normal buttons. They had a border radius, and they had something more. This left me wondering if I can make them myself using CSS?
+I was one day scrolling through the feed of dribbble looking for inspiration. Suddenly, these funky looking buttons appeared. They weren't normal buttons. They had a border radius, and they had something more, something really fancy. This left me wondering if I can make them myself using CSS. Challange accepted!
 
-After doing some research I found that I couldn't make them with pure CSS. Atleast not according to my understanding. 
+After doing some research I found that I couldn't make them with CSS. Atleast not according to my understanding. 
 
 SVG Paths seemed to be a promising workaround. Please let me know if there is another way.
 
-## Prototype
+## The Prototype
 I would like to give a huge thanks to Anthony Dugois for making the [SVG Path Builder](https://codepen.io/anthonydugois/pen/mewdyZ).
 I find myself using the tool as a creative outlet from time to time.
 
