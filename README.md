@@ -1,6 +1,8 @@
 # Bubbly Buttons
 Bored of normal border-radius?
+
 Want to give your buttons or boxes some flare?
+
 Here's a simple way to generate a more joyful box.
 
 <img src="images/buttons.png?raw=true" width="200px">
